@@ -7,3 +7,21 @@ before_install:
 
 script:
   - docker run -e CI=true image-name-tag npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-southeast-1"
+  # Name of the applicate on Elastic Bean Stalk
+  app: "docker"
+  # Elastic Beanstalk > Environments > Docker-env
+  env: "Docker-env"
+  # Search S3 service -> find the bucket name
+  bucket_name: "elasticbeanstalk-ap-southeast-1-525526175719"
+  # Bucket path as app name
+  bucket_path: "docker"
+  on:
+    branch: master
+  # Use IAM service for API key configuration 
+  # User should have AdministratorAccess permission on Elastic Bean Stalk
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECRET_KEY"
