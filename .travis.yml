@@ -20,7 +20,7 @@ deploy:
   # Bucket path as app name
   bucket_path: "docker"
   on:
-    branch: master
+    branch: main
   # Use IAM service for API key configuration 
   # User should have AdministratorAccess permission on Elastic Bean Stalk
   access_key_id: $AWS_ACCESS_KEY
